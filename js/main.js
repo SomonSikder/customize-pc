@@ -1,21 +1,33 @@
+// Function for Total Price without promo code
+function totalPriceUpdate(isAdd,extraCost){
+    const totalCost = document.getElementById('total-price')
+    const totalCostNumber = parseInt(totalCost.innerText)
+    if(isAdd){
+        return totalCost.innerText = totalCostNumber + extraCost
+    }
+    else{
+        return totalCost.innerText = totalCostNumber - extraCost
+    }
+    
+}
 
-// Function for Memory Costing
+
+// Function for Memory Cost
 function memoryCost(isCost){
     const extraMemoryCost = document.getElementById('extra-memory-cost')
     const extraMemoryCostText = parseInt(extraMemoryCost.innerText)
     
     if(isCost){
         const extraCost = extraMemoryCost.innerText = 180
-        const totalCost = document.getElementById('total-price')
-        const totalCostNumber = parseInt(totalCost.innerText)
-        totalCost.innerText = totalCostNumber + extraCost 
-       
-       
+        totalPriceUpdate(true,extraCost)
+        PriceAfterPromo(true,extraCost)
+        
     }else if(!isCost){
         const extraCost = extraMemoryCost.innerText = 0
-        const totalCost = document.getElementById('total-price')
-        const totalCostNumber = parseInt(totalCost.innerText)
-        totalCost.innerText = totalCostNumber - 180 
+        const totalUpdate = 180
+        totalPriceUpdate(false, totalUpdate)
+        PriceAfterPromo(false,totalUpdate)
+        
     }
     
 }
@@ -36,21 +48,20 @@ function storageCost(isCost){
     const extraStorageCostText = parseInt(extraStorageCost.innerText)
     if(isCost === 100){
         const extraCost = extraStorageCost.innerText = 100
-        const totalCost = document.getElementById('total-price')
-        const totalCostNumber = parseInt(totalCost.innerText)
-        totalCost.innerText = totalCostNumber + extraCost 
+        totalPriceUpdate(true, extraCost)
+        PriceAfterPromo(true,extraCost)
     }
     else if(isCost === 180){
         const extraCost = extraStorageCost.innerText = 180
-        const totalCost = document.getElementById('total-price')
-        const totalCostNumber = parseInt(totalCost.innerText)
-        totalCost.innerText = totalCostNumber + extraCost 
+        totalPriceUpdate(true, extraCost)
+        PriceAfterPromo(true, extraCost)
+
     }
     else{
         const extraCost = extraStorageCost.innerText = 0
-        const totalCost = document.getElementById('total-price')
-        const totalCostNumber = parseInt(totalCost.innerText)
-        totalCost.innerText = totalCostNumber - 280
+        totalPriceUpdate(false, extraCost)
+        PriceAfterPromo(false,extraCost)
+        
     }
 }
 
@@ -77,15 +88,14 @@ function deliveryCostUpdate(isCosting){
     const deliveryFreeText = parseInt(deliveryCost.innerText)
     if(isCosting){   
         const extraCost = deliveryCost.innerText = 20
-        const totalCost = document.getElementById('total-price')
-        const totalCostNumber = parseInt(totalCost.innerText)
-        totalCost.innerText = totalCostNumber + extraCost
+        totalPriceUpdate(true, extraCost)
+        PriceAfterPromo(true,extraCost)   
     }
     else if(!isCosting){
         const extraCost = deliveryCost.innerText = 0
-        const totalCost = document.getElementById('total-price')
-        const totalCostNumber = parseInt(totalCost.innerText)
-        totalCost.innerText = totalCostNumber - 20
+        const totalUpdate = 20
+        totalPriceUpdate(false, totalUpdate)
+        PriceAfterPromo(false, totalUpdate)
     }
 }
 
@@ -114,22 +124,20 @@ function(){
     const promoCode = document.getElementById('promo-code')
     const promoCodeValue = promoCode.value
     if(promoCodeValue === 'stevekaku'){
-        inTotalPrice.innerText = inTotalNumber * 20/100
+        inTotalPrice.innerText = inTotalNumber - inTotalNumber * 20/100
         promoCode.value = ''
     }
 })
 
+// Function for Total Price with promo code
+function PriceAfterPromo(isAdd, extraCost){
+    const inTotalPrice = document.getElementById('inTotal-price')
+    const inTotalPriceNumber = parseInt(inTotalPrice.innerText) 
+    if(isAdd){
+        return inTotalPrice.innerText = inTotalPriceNumber + extraCost
+    }
+    else{
+        return inTotalPrice.innerText = inTotalPriceNumber - extraCost
+    }
+}
 
-
-
-
-
-
-const inTotalPrice = document.getElementById('inTotal-price')
-const totalPrice = document.getElementById('total-price')
-
-// const inTotalPriceNumber = parseInt(inTotalPrice.innerText) 
-const totalPriceNumber = parseInt(totalPrice.innerText) 
-inTotalPrice.innerText = totalPriceNumber
-console.log(totalPriceNumber)
-console.log(inTotalPrice.innerText = totalPriceNumber)
