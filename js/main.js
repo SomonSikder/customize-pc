@@ -70,7 +70,7 @@ document.getElementById('apply-btn').addEventListener('click',function(){
     const promoInput = document.getElementById('promo-code');
     const promoInputValue=promoInput.value;
     if(promoInputValue=="stevekaku"){
-        const amountDiscount=totalPrice - totalPrice*.2;
+        const amountDiscount = totalPrice - totalPrice * .2;
         totalText.innerText=amountDiscount;
         promoInput.value='';
     }
